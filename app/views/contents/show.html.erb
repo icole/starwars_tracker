@@ -1,0 +1,31 @@
+<div>
+  <h1 class="font-bold text-4xl"></h1>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold mb-4"><%= @content.title %></h1>
+        <div class="text-gray-600">
+          <p class="mb-4"><%= @content.description %></p>
+          <div class="flex items-center space-x-4">
+            <span class="text-sm">
+              <span class="font-medium">Type:</span>
+              <%= @content.content_type.name %>
+            </span>
+            <span class="text-sm">
+              <span class="font-medium">Release Date:</span>
+              <%= @content.release_date.strftime('%B %d, %Y') %>
+            </span>
+            <span class="text-sm">
+              <span class="font-medium">Order:</span>
+              #<%= @content.canonical_order %>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-form">
+        <%= render 'progresses/progress_form', content: @content, progress: @progress %>
+      </div>
+    </div>
+  </div>
+</div>

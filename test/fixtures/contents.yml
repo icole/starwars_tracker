@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  content_type: one
+  release_date: 2025-05-23
+  canonical_order: 1
+
+two:
+  title: MyString
+  description: MyText
+  content_type: two
+  release_date: 2025-05-23
+  canonical_order: 1

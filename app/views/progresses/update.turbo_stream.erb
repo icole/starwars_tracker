@@ -1,0 +1,5 @@
+<turbo-stream action="replace" target="progress_<%= @content.id %>">
+  <template>
+    <%= render 'progresses/progress_form', content: @content, progress: @progress %>
+  </template>
+</turbo-stream>

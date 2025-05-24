@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Star Wars Tracker" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <!-- Tailwind CSS -->
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  </head>
+
+  <body class="font-sans antialiased">
+    <!-- Header -->
+    <header class="site-header">
+      <nav class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/" class="nav-link font-bold text-xl">
+              <span class="text-blue-600">Star Wars</span> Tracker
+            </a>
+          </div>
+          
+          <% if user_signed_in? %>
+            <div class="flex items-center space-x-4">
+              <span class="text-sm text-gray-600">Welcome, <%= current_user.email %></span>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </div>
+          <% else %>
+            <div class="flex items-center space-x-4">
+              <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t pt-8 text-center text-gray-500 text-sm">
+      <p>© <%= Time.current.year %> Star Wars Tracker. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <%= javascript_importmap_tags %>
+  </body>
+</html>

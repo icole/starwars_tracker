@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+:root {
+  --primary-color: #007AFF;
+  --secondary-color: #5856D6;
+  --success-color: #34C759;
+  --warning-color: #FF9500;
+  --danger-color: #FF3B30;
+}
+
+/* Global styles */
+body {
+  @apply bg-gray-50;
+}
+
+/* Custom components */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2.5;
+}
+
+.progress-bar-fill {
+  @apply h-2.5 rounded-full transition-all duration-300;
+}
+
+/* Content cards */
+.content-card {
+  @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow;
+}
+
+/* Progress form */
+.progress-form {
+  @apply flex items-center space-x-2;
+}
+
+.progress-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.progress-submit {
+  @apply px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+}
+
+/* Completed status */
+.completed-badge {
+  @apply bg-green-100 text-green-800 px-4 py-2 rounded;
+}
+
+/* Responsive grid */
+.content-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Header styles */
+.site-header {
+  @apply bg-white shadow-sm;
+}
+
+/* Navigation */
+.nav-link {
+  @apply px-4 py-2 hover:text-blue-500 transition-colors;
+}

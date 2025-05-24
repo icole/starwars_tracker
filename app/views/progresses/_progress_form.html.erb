@@ -1,0 +1,33 @@
+<div id="progress_<%= content.id %>">
+  <% if progress.completed? %>
+    <div class="completed-badge">
+      <span class="font-medium">Completed!</span>
+      <span class="text-sm">(100%)</span>
+    </div>
+  <% else %>
+    <div class="space-y-4">
+      <div class="progress-bar">
+        <div class="progress-bar-fill bg-blue-500" style="width: <%= progress.progress || 0 %>%"></div>
+      </div>
+      <%= form_with(model: progress, url: content_progress_path(content), method: :post, local: true) do |f| %>
+        <div class="flex items-center space-x-2">
+          <div class="w-32">
+            <%= f.label :progress, "Progress:" %>
+          </div>
+          <div class="flex-1">
+            <%= f.number_field :progress,
+                            class: "progress-input",
+                            min: 0,
+                            max: 100,
+                            step: 1,
+                            value: progress.progress || 0 %>
+          </div>
+          <div>
+            <%= f.submit "Update",
+                        class: "progress-submit" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
