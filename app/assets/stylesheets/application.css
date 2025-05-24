@@ -1,68 +1,334 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
+ * Star Wars Tracker - Main Styles
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Custom styles */
+/* Base Styles */
 :root {
-  --primary-color: #007AFF;
-  --secondary-color: #5856D6;
-  --success-color: #34C759;
-  --warning-color: #FF9500;
-  --danger-color: #FF3B30;
+  --primary: #3B82F6;
+  --primary-dark: #2563EB;
+  --secondary: #8B5CF6;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --dark: #1F2937;
+  --light: #F9FAFB;
 }
 
-/* Global styles */
+/* Global Styles */
 body {
-  @apply bg-gray-50;
+  background-color: #F3F4F6;
+  color: #1F2937;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
 }
 
-/* Custom components */
-.progress-bar {
-  @apply w-full bg-gray-200 rounded-full h-2.5;
+/* Layout */
+.max-w-7xl {
+  max-width: 1280px;
 }
 
-.progress-bar-fill {
-  @apply h-2.5 rounded-full transition-all duration-300;
-}
-
-/* Content cards */
-.content-card {
-  @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow;
-}
-
-/* Progress form */
-.progress-form {
-  @apply flex items-center space-x-2;
-}
-
-.progress-input {
-  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
-}
-
-.progress-submit {
-  @apply px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
-}
-
-/* Completed status */
-.completed-badge {
-  @apply bg-green-100 text-green-800 px-4 py-2 rounded;
-}
-
-/* Responsive grid */
+/* Content Grid */
 .content-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
 }
 
-/* Header styles */
-.site-header {
-  @apply bg-white shadow-sm;
+/* Content Card */
+.content-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 450px;
 }
 
-/* Navigation */
-.nav-link {
-  @apply px-4 py-2 hover:text-blue-500 transition-colors;
+.content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-color: #BFDBFE;
 }
+
+/* Card Image */
+.content-card .card-image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.content-card:hover .card-image {
+  opacity: 1;
+}
+
+/* Content Badge */
+.content-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Type Icons */
+.content-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-badge svg {
+  width: 24px;
+  height: 24px;
+}
+
+.content-badge:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.content-badge.movie {
+  background-color: rgba(124, 58, 237, 0.9);
+  color: white;
+}
+
+.content-badge.series {
+  background-color: rgba(3, 105, 161, 0.9);
+  color: white;
+}
+
+.content-badge.book {
+  background-color: rgba(16, 185, 129, 0.9);
+  color: white;
+}
+
+.content-badge.other {
+  background-color: rgba(99, 102, 241, 0.9);
+  color: white;
+}
+
+/* Tooltip for content type */
+.content-badge::after {
+  content: attr(title);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.content-badge:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(4px);
+}
+
+/* Card Content */
+.card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.content-card:hover .card-content h2 {
+  color: #3B82F6;
+}
+
+/* Meta Info */
+.meta-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6B7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  color: #F59E0B;
+  font-weight: 500;
+}
+
+.rating svg {
+  margin-right: 0.25rem;
+}
+
+/* Description */
+.description {
+  color: #4B5563;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card Footer */
+.card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* View Details Link */
+.view-details {
+  display: inline-flex;
+  align-items: center;
+  color: #3B82F6;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.view-details:hover {
+  color: #2563EB;
+}
+
+.view-details svg {
+  margin-left: 0.25rem;
+  transition: transform 0.2s;
+}
+
+.view-details:hover svg {
+  transform: translateX(2px);
+}
+
+/* Updates Counter */
+.updates-counter {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  transition: color 0.2s;
+}
+
+.content-card:hover .updates-counter {
+  color: #3B82F6;
+}
+
+.updates-counter svg {
+  margin-right: 0.25rem;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #1E40AF 0%, #4F46E5 100%);
+  color: white;
+  padding: 4rem 1rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://lumiere-a.akamaihd.net/v1/images/star-wars-backgrounds-14_856985d6.jpeg') center/cover no-repeat;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1.125rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.content-card {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Add delay for staggered animation */
+.content-card:nth-child(1) { animation-delay: 0.1s; }
+.content-card:nth-child(2) { animation-delay: 0.2s; }
+.content-card:nth-child(3) { animation-delay: 0.3s; }
+.content-card:nth-child(4) { animation-delay: 0.4s; }
+.content-card:nth-child(5) { animation-delay: 0.5s; }
+.content-card:nth-child(6) { animation-delay: 0.6s; }
