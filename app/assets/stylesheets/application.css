@@ -203,6 +203,13 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -ms-flexbox;
+  -ms-box-orient: vertical;
+  line-clamp: 3;
+  max-height: 4.8em; /* Fallback for browsers that don't support line-clamp */
 }
 
 /* Card Footer */
